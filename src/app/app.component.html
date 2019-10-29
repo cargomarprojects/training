@@ -1,6 +1,9 @@
+<div *ngIf="showWaitScreen$ | async">
+        <app-wait></app-wait>
+</div>
+
 <div *ngIf="isLoggedIn$ | async">
         <app-header></app-header>
 </div>
-
 
 <router-outlet></router-outlet>

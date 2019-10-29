@@ -16,7 +16,7 @@ import { LoginComponent } from './core/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthReducer } from './core/login/auth.store';
 import { AuthEffects } from './core/login/auth.effects';
-import { HttpInterceptorService } from './http.interceptor';
+import { HttpInterceptorService } from './http.interceptors';
 import { WaitComponent } from './core/wait/wait.component';
 
 @NgModule({
