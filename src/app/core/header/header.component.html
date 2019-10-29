@@ -28,7 +28,9 @@
       
           </ul>
           <form class="form-inline my-2 my-lg-0">
-              <a class="nav-link text-white cursor-pointer" (click)="logout()">Logout</a>      
+              <div *ngIf="username$ | async as username">
+              <a class="nav-link text-white cursor-pointer" (click)="logout()">Logout : {{username}} </a>      
+            </div>
           </form>
         </div>
       </nav>

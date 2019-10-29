@@ -1,4 +1,4 @@
-import { createAction, props, State , Action, createReducer,on } from '@ngrx/store';
+import { createAction, props, State , Action, createReducer,on, createFeatureSelector, createSelector } from '@ngrx/store';
 import { Iuser } from 'src/app/models/iuser';
 
 export interface AuthState{
@@ -36,4 +36,19 @@ export const AuthReducer = createReducer(
 )
 
 
+export const select_Auth = createFeatureSelector<AuthState>('auth');
 
+export const select_isloggedin$ =  createSelector(
+    select_Auth,
+    (state) => state.isAauthenticated
+)
+
+export const select_isloggedout$ =  createSelector(
+    select_Auth,
+    (state) => !state.isAauthenticated
+)
+
+export const select_username$ =  createSelector(
+    select_Auth,
+    (state) => (state.isAauthenticated)  ? state.user.username : null
+)
