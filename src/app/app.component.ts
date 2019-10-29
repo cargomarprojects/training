@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { select_isloggedin$, login_action } from './core/login/auth.store';
 import { GlobalService } from './services/global.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-root',
@@ -38,11 +38,13 @@ export class AppComponent {
 
   checkEvents() {
     this.router.events.subscribe(event => {
-
       if (event instanceof NavigationStart)
         this.showProgress = true;
       if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError)
-        this.showProgress = false;
+
+        setTimeout(() => {
+          this.showProgress = false;
+        }, 250);
 
     });
   }
