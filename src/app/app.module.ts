@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,6 +16,8 @@ import { LoginComponent } from './core/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthReducer } from './core/login/auth.store';
 import { AuthEffects } from './core/login/auth.effects';
+import { HttpInterceptorService } from './http.interceptor';
+import { WaitComponent } from './core/wait/wait.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthEffects } from './core/login/auth.effects';
     HeaderComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    WaitComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,13 @@ import { AuthEffects } from './core/login/auth.effects';
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument()
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : HttpInterceptorService,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
