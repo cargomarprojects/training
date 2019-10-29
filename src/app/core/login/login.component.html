@@ -1,0 +1,39 @@
+<div class="wrapper-center">
+
+    <div class="border p-2 text-center bg-info text-white" style="width:400px">
+        <h4>LOGIN</h4>
+    </div>
+    <div class="border p-2" style="width:400px">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm">User Id</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text" placeholder="Enter User ID" [(ngModel)] = "userid">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm">Password</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" type="text" placeholder="Enter Password"  [(ngModel)] = "pwd">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm"></label>
+                    <div class="col-8">
+                        <button class="btn btn-sm btn-info mr-2" (click)="login()" >Login</button>
+                        <button class="btn btn-sm btn-info"  (click)="cancel()" >cancel</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="p-2 text-center bg-info text-white" style="width:400px">
+            <h5>{{message}}</h5>
+        </div>
+
+</div>
