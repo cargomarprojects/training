@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -10,14 +12,35 @@ export class LoginComponent implements OnInit {
     userid  = '';
     pwd = '';
 
-    constructor() { }
+    constructor(
+        private mainservice : LoginService,
+        private  router : Router
+    ) { }
 
     ngOnInit() { }
 
 
     login(){
         this.message = 'Pls wait while login'
-        console.log ( this.userid, this.pwd);
+
+        this.mainservice.login(this.userid, this.pwd). subscribe(
+            res =>{
+                if ( res) {
+                    this.message = 'Login Success';
+                    this.router.navigate(['/home']);
+                }
+                else 
+                {
+                    this.message =  'Login Error';
+                }
+            },
+            err =>{
+                this.message = err.message;
+            }   
+        );
+
+
+
     }
     cancel (){
         this.userid = '';
