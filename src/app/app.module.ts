@@ -17,8 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthReducer } from './core/login/auth.store';
 import { AuthEffects } from './core/login/auth.effects';
 import { HttpInterceptorService } from './http.interceptors';
-import { WaitComponent } from './core/wait/wait.component';
-import { ProgressComponent } from './core/progress/progress.component';
+
 
 @NgModule({
   declarations: [
@@ -27,8 +26,6 @@ import { ProgressComponent } from './core/progress/progress.component';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    WaitComponent,
-    ProgressComponent
   ],
   imports: [
     BrowserModule,
