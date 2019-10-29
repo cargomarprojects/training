@@ -1,7 +1,6 @@
 import { createAction, props, State , Action, createReducer,on } from '@ngrx/store';
 import { Iuser } from 'src/app/models/iuser';
 
-
 export interface AuthState{
     user: Iuser;
     isAauthenticated : boolean;
@@ -35,5 +34,6 @@ export const AuthReducer = createReducer(
         }
     })
 )
+
 
 
