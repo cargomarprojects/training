@@ -18,6 +18,7 @@ import { AuthReducer } from './core/login/auth.store';
 import { AuthEffects } from './core/login/auth.effects';
 import { HttpInterceptorService } from './http.interceptors';
 import { WaitComponent } from './core/wait/wait.component';
+import { ProgressComponent } from './core/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { WaitComponent } from './core/wait/wait.component';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    WaitComponent
+    WaitComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
