@@ -19,3 +19,7 @@ body {
 .cursor-pointer {
     cursor : pointer;
 }
+
+.progress {
+    border-radius: 0 !important;
+}
