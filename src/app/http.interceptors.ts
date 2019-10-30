@@ -4,6 +4,7 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpResponse } fr
 import { Observable, noop } from 'rxjs';
 import { GlobalService } from './services/global.service';
 import { map, finalize } from 'rxjs/operators';
+import { Timeouts } from 'selenium-webdriver';
 
 @Injectable({ providedIn: 'root' })
 export class HttpInterceptorService implements HttpInterceptor {
@@ -25,7 +26,12 @@ export class HttpInterceptorService implements HttpInterceptor {
                     this.total_calls--;
 
                 if (this.total_calls == 0)
-                    this.gs.hideWaitScreen();
+                {
+                    setTimeout(() => {
+                        this.gs.hideWaitScreen();
+                    }, 500);
+                                        
+                }
                     
                 return e;
             }),

@@ -28,10 +28,7 @@ export const AuthReducer = createReducer(
         }
     }),
     on(logout_action, (state, action) =>{
-        return {
-            user : undefined,
-            isAauthenticated : false
-        }
+        return { ...state,  isAauthenticated : false}
     })
 )
 
@@ -46,6 +43,11 @@ export const select_isloggedin$ =  createSelector(
 export const select_isloggedout$ =  createSelector(
     select_Auth,
     (state) => !state.isAauthenticated
+)
+
+export const select_userid$ =  createSelector(
+    select_Auth,
+    (state) => (state.user)  ? state.user.userid : null
 )
 
 export const select_username$ =  createSelector(
