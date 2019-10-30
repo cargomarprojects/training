@@ -29,7 +29,7 @@ export class HttpInterceptorService implements HttpInterceptor {
                 {
                     setTimeout(() => {
                         this.gs.hideWaitScreen();
-                    }, 500);
+                    }, 1000);
                                         
                 }
                     
