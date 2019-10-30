@@ -25,14 +25,9 @@ export class HttpInterceptorService implements HttpInterceptor {
                 if (e instanceof HttpResponse)
                     this.total_calls--;
 
-                if (this.total_calls == 0)
-                {
-                    setTimeout(() => {
-                        this.gs.hideWaitScreen();
-                    }, 1000);
-                                        
+                if (this.total_calls == 0) {
+                    this.gs.hideWaitScreen();
                 }
-                    
                 return e;
             }),
         )

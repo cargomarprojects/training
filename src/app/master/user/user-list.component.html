@@ -1,1 +1,25 @@
-<h1>User List</h1>
+<h4>USER LIST</h4>
+
+
+<div class="border">
+    <button class="btn btn-sm btn-info" (click)="list()">Search</button>
+</div>
+
+<div class="">
+
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>CODE</th>
+                <th>NAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rec of list$ | async">
+                <td>{{rec.userid}}</td>
+                <td>{{rec.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
