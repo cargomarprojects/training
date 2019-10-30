@@ -2,12 +2,15 @@
         <app-wait></app-wait>
 </div>
 
+<div *ngIf="showProgress">
+        <app-progress></app-progress>
+</div>
+
+
 <div *ngIf="isLoggedIn$ | async">
         <app-header></app-header>
 </div>
 
-<div *ngIf="showProgress">
-        <app-progress></app-progress>
-</div>
+
 
 <router-outlet></router-outlet>
