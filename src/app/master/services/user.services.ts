@@ -12,8 +12,8 @@ export class UserService {
         private gs : GlobalService
     ) { }
 
-    List() {
-        return this.http.get<iuser[]>(this.gs.url + "/user");
+    List(searchstring : string) {
+        return this.http.get<iuser[]>(this.gs.url + "/user?q=" + searchstring);
     }
 
 }

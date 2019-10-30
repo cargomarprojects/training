@@ -12,16 +12,19 @@ import { startWith, delay } from 'rxjs/operators';
 export class UserListComponent implements OnInit {
 
     list$: Observable<iuser[]>;
+
+    searchstring = '';
+
     constructor(
         private service: UserService
-    ) {}
+    ) { }
 
     ngOnInit() {
-        this.list$ = this.service.List();
+        this.list();
     }
 
     list() {
-
+        this.list$ = this.service.List(this.searchstring);
     }
 
 }

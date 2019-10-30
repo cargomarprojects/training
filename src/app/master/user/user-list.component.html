@@ -1,9 +1,22 @@
-<div class="p-2">
+<div class="border p-2 mt-1">
     <h5>USER LIST</h5>
 </div>
 
-<div class="border p-2 text-center">
-    <button class="btn btn-sm btn-info" (click)="list()">Search</button>
+<div class="border p-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group row">
+                <label class="col-2 col-form-label col-form-label-sm">Search</label>
+                <div class="col-8">
+                    <input class="form-control form-control-sm" type="text" [(ngModel)]="searchstring">
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-sm btn-info" (click)="list()">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="border">

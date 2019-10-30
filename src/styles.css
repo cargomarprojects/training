@@ -6,7 +6,7 @@ html {
 
 body {
     height :100%;
-    padding: 2px;
+    padding :2px;
 }
 
 .wrapper-center{
@@ -35,7 +35,10 @@ body {
     z-index:9999;
     background: rgba( 150, 150, 150, 150 );
     opacity: 0.6;
+  }
 
-    
 
+  .row {
+      
+      margin  :0 !important;
   }
