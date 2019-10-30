@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.services';
 import { iuser } from '../models/iuser';
 import { Observable } from 'rxjs';
-import { startWith, delay } from 'rxjs/operators';
 
 @Component({
     selector: 'app-user-list',
