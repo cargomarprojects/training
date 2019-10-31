@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.services';
-import { iuser } from '../models/iuser';
+import { UserService } from '../../services/user.services';
+import { iuser } from '../../models/iuser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-user-list',
@@ -10,7 +11,6 @@ import { map } from 'rxjs/operators';
 })
 
 export class UserListComponent implements OnInit {
-
 
     page =1;
     total_pages = 0;
@@ -21,19 +21,13 @@ export class UserListComponent implements OnInit {
     searchstring = '';
 
     constructor(
-        private service: UserService
+        private service: UserService,
+        
     ) { }
 
     ngOnInit() {
-        this.list();
+     
     }
 
-    list() {
-        this.list$ = this.service.List(this.searchstring).pipe(
-            map(e => {
-                return e
-            })
-        )
-    }
 
 }
