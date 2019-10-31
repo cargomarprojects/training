@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.store';
-import { login_action, select_username$, select_userid$, select_error$, logout_action } from './auth.store';
+import { login_action, select_error$, logout_action } from './auth.store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,8 +15,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     login_error$ : Observable<string>;
 
     constructor(
-        private mainservice: LoginService,
-        private router: Router,
         private store: Store<AppState>
     ) {
         this.login_error$ = this.store.select(select_error$);

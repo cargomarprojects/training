@@ -17,7 +17,7 @@ export const logout_action = createAction('[LOGIN SCREEN] LOGOUT');
 export const initialState : AuthState = {
     user : undefined,
     isAauthenticated : false,
-    error : ''
+    error : 'Enter Credentials'
 }
 
 export function Reducer( state : AuthState , action : Action  ) : AuthState{
@@ -27,13 +27,13 @@ export function Reducer( state : AuthState , action : Action  ) : AuthState{
 export const AuthReducer = createReducer(
     initialState,
     on(login_success_action, (state, action) =>{
-        return { ...state, user :  action.user,  isAauthenticated : true}
+        return { ...state, user :  action.user,  isAauthenticated : true, error : 'Input Your Credentials'}
     }),
     on(login_fail_action, (state, action) =>{
         return { ...state, user : undefined,  isAauthenticated : false, error : action.error}
     }),
     on(logout_action, (state, action) =>{
-        return { ...state, user : undefined,  isAauthenticated : false, error : 'Enter Credentials' }
+        return { ...state, user : undefined,  isAauthenticated : false, error : 'Input Your Credentials' }
     })
     
 )
