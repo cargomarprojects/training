@@ -24,18 +24,18 @@ export class AuthEffects {
             map ( data => {
                 if ( data )  {
                     const user = <Iuser>{ id : data.id, userid : data.userid, username : data.username };
-                    sessionStorage.setItem('token', JSON.stringify(user));
+                    localStorage.setItem('token', JSON.stringify(user));
                     this.router.navigate(['/home']);
                     return login_success_action({ user });
                 }  
                 else 
                 {
-                    sessionStorage.removeItem("token");
+                    localStorage.removeItem("token");
                     return login_fail_action({error : 'Invalid Credentials'})
                 }
             }),
             catchError ( err =>  {
-                sessionStorage.removeItem("token");
+                localStorage.removeItem("token");
                 return of(login_fail_action({error: 'Http Error'})) 
             })
         ))

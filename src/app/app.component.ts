@@ -34,9 +34,9 @@ export class AppComponent {
 
   ngOnInit() {
 
-    var token = sessionStorage.getItem("token");
+    var token = localStorage.getItem("token");
     if (token) {
-      var user = JSON.parse(sessionStorage.getItem("token"));
+      var user = JSON.parse(token);
       this.store.dispatch(login_success_action({ user: user }));
     }
 
