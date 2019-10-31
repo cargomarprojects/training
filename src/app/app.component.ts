@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { select_isloggedin$, login_action, login_success_action } from './core/login/auth.store';
 import { GlobalService } from './services/global.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { startWith } from 'rxjs/operators';
 
 
 @Component({
@@ -42,7 +41,6 @@ export class AppComponent {
 
   }
 
-
   checkEvents() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart)
@@ -51,7 +49,5 @@ export class AppComponent {
         this.showProgress = false;
     });
   }
-
-
 
 }
