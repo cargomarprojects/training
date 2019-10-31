@@ -18,6 +18,7 @@ export const initialState : AuthState = {
     error : 'Enter Credentials'
 }
 
+
 export function Reducer( state : AuthState , action : Action  ) : AuthState{
     return AuthReducer(state,action);
 }
