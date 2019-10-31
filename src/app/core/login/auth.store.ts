@@ -33,7 +33,7 @@ export const AuthReducer = createReducer(
         return { ...state, user : undefined,  isAauthenticated : false, error : action.error}
     }),
     on(logout_action, (state, action) =>{
-        return { ...state, user : undefined,  isAauthenticated : false}
+        return { ...state, user : undefined,  isAauthenticated : false, error : 'Enter Credentials' }
     })
     
 )

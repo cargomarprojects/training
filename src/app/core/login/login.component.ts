@@ -3,7 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.store';
-import { login_action, select_username$, select_userid$, select_error$ } from './auth.store';
+import { login_action, select_username$, select_userid$, select_error$, logout_action } from './auth.store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -67,8 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     }
     cancel() {
-        this.userid = '';
-        this.pwd = '';
-        this.message = 'Enter Credentials';
+
+        this.store.dispatch( logout_action());
     }
 }
