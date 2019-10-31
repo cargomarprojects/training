@@ -10,9 +10,7 @@ export interface AuthState{
 export const login_action = createAction('[LOGIN SCREEN] LOGIN', props<{userid: string, pwd : string }>());
 export const login_success_action = createAction('[LOGIN SCREEN] LOGIN SUCCESS', props<{user : Iuser }>());
 export const login_fail_action = createAction('[LOGIN SCREEN] LOGIN FAIL', props<{error : string}>());
-
 export const logout_action = createAction('[LOGIN SCREEN] LOGOUT');
-
 
 export const initialState : AuthState = {
     user : undefined,
@@ -35,9 +33,7 @@ export const AuthReducer = createReducer(
     on(logout_action, (state, action) =>{
         return { ...state, user : undefined,  isAauthenticated : false, error : 'Input Your Credentials' }
     })
-    
 )
-
 
 export const select_Auth = createFeatureSelector<AuthState>('auth');
 
