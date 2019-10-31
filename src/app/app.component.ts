@@ -11,7 +11,7 @@ import { startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  changeDetection : ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'training';
@@ -27,9 +27,9 @@ export class AppComponent {
   ) {
 
     this.showWaitScreen$ = this.gs.waitScreen$;
-    this.isLoggedIn$ = this.store.pipe(select(select_isloggedin$));    
+    this.isLoggedIn$ = this.store.pipe(select(select_isloggedin$));
     this.checkEvents();
-    
+
   }
 
   ngOnInit() {
@@ -39,9 +39,6 @@ export class AppComponent {
       var user = JSON.parse(sessionStorage.getItem("token"));
       this.store.dispatch(login_success_action({ user: user }));
     }
-
-    
-
 
   }
 
