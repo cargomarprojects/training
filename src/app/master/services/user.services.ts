@@ -3,17 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { GlobalService } from 'src/app/services/global.service';
 import { iuser } from '../models/iuser';
 import { Observable } from 'rxjs';
+import { shareReplay, share } from 'rxjs/operators';
 
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn: 'root' })
 export class UserService {
-
     constructor(
         private http: HttpClient,
-        private gs : GlobalService
+        private gs: GlobalService
     ) { }
 
-    List(searchstring : string) {
-        return this.http.get<iuser[]>(this.gs.url + "/user?q=" + searchstring);
+    List(searchstring: string) {
+        return this.http.get<iuser[]>(this.gs.url + "/user?page=1&q=" + searchstring)
     }
-
 }

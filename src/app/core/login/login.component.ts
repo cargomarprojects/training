@@ -3,7 +3,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.store';
-import { login_action, select_username$, select_userid$ } from './auth.store';
+import { login_action, select_username$, select_userid$, select_error$ } from './auth.store';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -17,12 +18,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     sub : any;
 
+    login_error$ : Observable<string>;
+
     constructor(
         private mainservice: LoginService,
         private router: Router,
         private store: Store<AppState>
     ) {
-
+        this.login_error$ = this.store.select(select_error$);
         this.sub = this.store.select(select_userid$).subscribe(
             e => {
                 this.userid = e;
@@ -40,8 +43,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
     login() {
-        this.message = 'Pls wait while login'
+        this.message = 'Pls wait while login';
+        this.store.dispatch(login_action({ userid : this.userid, pwd : this.pwd  }))
 
+        /*
         this.mainservice.login(this.userid, this.pwd).subscribe(
             res => {
                 if (res) {
@@ -58,8 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.message = err.message;
             }
         );
-
-
+        */
 
     }
     cancel() {

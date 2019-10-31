@@ -4,15 +4,20 @@ import { Iuser } from 'src/app/models/iuser';
 export interface AuthState{
     user: Iuser;
     isAauthenticated : boolean;
+    error : string;
 }
 
-export const login_action = createAction('[LOGIN SCREEN] LOGIN', props<{user : Iuser }>());
+export const login_action = createAction('[LOGIN SCREEN] LOGIN', props<{userid: string, pwd : string }>());
+export const login_success_action = createAction('[LOGIN SCREEN] LOGIN SUCCESS', props<{user : Iuser }>());
+export const login_fail_action = createAction('[LOGIN SCREEN] LOGIN FAIL', props<{error : string}>());
+
 export const logout_action = createAction('[LOGIN SCREEN] LOGOUT');
 
 
 export const initialState : AuthState = {
     user : undefined,
-    isAauthenticated : false
+    isAauthenticated : false,
+    error : ''
 }
 
 export function Reducer( state : AuthState , action : Action  ) : AuthState{
@@ -21,15 +26,16 @@ export function Reducer( state : AuthState , action : Action  ) : AuthState{
 
 export const AuthReducer = createReducer(
     initialState,
-    on(login_action, (state, action) =>{
-        return {
-            user : action.user ,
-            isAauthenticated : true
-        }
+    on(login_success_action, (state, action) =>{
+        return { ...state, user :  action.user,  isAauthenticated : true}
+    }),
+    on(login_fail_action, (state, action) =>{
+        return { ...state, user : undefined,  isAauthenticated : false, error : action.error}
     }),
     on(logout_action, (state, action) =>{
-        return { ...state,  isAauthenticated : false}
+        return { ...state, user : undefined,  isAauthenticated : false}
     })
+    
 )
 
 
@@ -53,4 +59,9 @@ export const select_userid$ =  createSelector(
 export const select_username$ =  createSelector(
     select_Auth,
     (state) => (state.isAauthenticated)  ? state.user.username : null
+)
+
+export const select_error$ =  createSelector(
+    select_Auth,
+    (state) => state.error
 )

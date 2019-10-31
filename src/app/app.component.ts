@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './app.store';
 import { Observable } from 'rxjs';
-import { select_isloggedin$, login_action } from './core/login/auth.store';
+import { select_isloggedin$, login_action, login_success_action } from './core/login/auth.store';
 import { GlobalService } from './services/global.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { startWith } from 'rxjs/operators';
@@ -37,7 +37,7 @@ export class AppComponent {
     var token = sessionStorage.getItem("token");
     if (token) {
       var user = JSON.parse(sessionStorage.getItem("token"));
-      this.store.dispatch(login_action({ user: user }));
+      this.store.dispatch(login_success_action({ user: user }));
     }
 
     

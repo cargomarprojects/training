@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.services';
 import { iuser } from '../models/iuser';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-user-list',
@@ -9,6 +10,11 @@ import { Observable } from 'rxjs';
 })
 
 export class UserListComponent implements OnInit {
+
+
+    page =1;
+    total_pages = 0;
+    total_records  =0;
 
     list$: Observable<iuser[]>;
 
@@ -23,7 +29,11 @@ export class UserListComponent implements OnInit {
     }
 
     list() {
-        this.list$ = this.service.List(this.searchstring);
+        this.list$ = this.service.List(this.searchstring).pipe(
+            map(e => {
+                return e
+            })
+        )
     }
 
 }
