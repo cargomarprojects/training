@@ -4,6 +4,8 @@ import { iuser } from '../../models/iuser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.store';
+import { selectUserList, LOAD_REQUEST_ACTION } from './user-list.store';
 
 @Component({
     selector: 'app-user-list',
@@ -12,21 +14,21 @@ import { Store } from '@ngrx/store';
 
 export class UserListComponent implements OnInit {
 
-    page =1;
-    total_pages = 0;
-    total_records  =0;
-
     list$: Observable<iuser[]>;
 
     searchstring = '';
 
     constructor(
-        private service: UserService,
-        
-    ) { }
+        private store : Store<AppState>
+    ) { 
+        this.list$ = this.store.select(selectUserList);
+    }
 
     ngOnInit() {
      
+    }
+    search (){
+        this.store.dispatch( LOAD_REQUEST_ACTION({searchstring : this.searchstring}));
     }
 
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GlobalService } from 'src/app/services/global.service';
 import { iuser } from '../models/iuser';
 import { Observable } from 'rxjs';
-import { shareReplay, share } from 'rxjs/operators';
+import { shareReplay, share, map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -13,6 +13,8 @@ export class UserService {
     ) { }
 
     List(searchstring: string) {
-        return this.http.get<iuser[]>(this.gs.url + "/user?page=1&q=" + searchstring)
+        return this.http.get<iuser[]>(this.gs.url + "/user?page=1&q=" + searchstring).pipe(
+            map (e => (e.length > 0) ? e : null )
+        )
     }
 }

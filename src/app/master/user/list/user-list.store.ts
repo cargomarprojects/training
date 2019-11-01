@@ -1,18 +1,55 @@
 import { iuser } from '../../models/iuser';
-import { UserListComponent } from './user-list.component';
-import { Action } from '@ngrx/store';
+import { Action, createAction, props, createReducer,on, createFeatureSelector, createSelector } from '@ngrx/store';
 
+export const LOAD_REQUEST_ACTION = createAction('[USER SCREEN] LOAD-REQUEST', props<{ searchstring : string}>());
+export const LOAD_SUCCESS_ACTION = createAction('[USER SCREEN] LOAD-SUCCESS', props<{ userlist : iuser[]}>());
+export const LOAD_FAIL_ACTION = createAction('[USER SCREEN] LOAD-FAIL', props<{ error : string}>());
 
 export interface userState {
     loaded : boolean;
-    userList : iuser[];
+    error : string ;
+    userlist : iuser[];
 }
 
 export const initialState : userState = {
     loaded : false,
-    userList : []
+    error : null,
+    userlist : []
 }
 
 export function userReducer ( state : userState , action : Action  ){
-    return state;
+    return reducer(state, action);
 }
+
+
+export const reducer = createReducer(
+    initialState,
+    on( LOAD_SUCCESS_ACTION, (state, action) =>{
+        return {
+            ...state, loaded : true, error : null, userlist: action.userlist
+        }
+    }),
+    on( LOAD_FAIL_ACTION, (state, action) =>{
+        return {
+            ...state, loaded : false, userlist : undefined, error : action.error
+        }    
+    })   
+)
+
+
+export const selectUserState = createFeatureSelector<userState>('userlist');
+
+export const selectLoaded = createSelector(
+    selectUserState,
+    (state) => state.loaded
+)
+export const selectError = createSelector(
+    selectUserState,
+    (state) => state.error
+)
+export const selectUserList = createSelector(
+    selectUserState,
+    (state) => state.userlist
+)
+
+
