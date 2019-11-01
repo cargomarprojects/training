@@ -15,7 +15,7 @@ import { selectUserList, LOAD_REQUEST_ACTION } from './user-list.store';
 export class UserListComponent implements OnInit {
 
     list$: Observable<iuser[]>;
-
+    
     searchstring = '';
 
     constructor(

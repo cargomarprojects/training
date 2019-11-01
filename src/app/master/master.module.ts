@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { userReducer } from './user/list/user-list.store';
 import { EffectsModule } from '@ngrx/effects';
 import { UserListEffect } from './user/list/user-list.effects';
+import { UserListHeaderComponent } from './user/list/user-list-header.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { UserListEffect } from './user/list/user-list.effects';
         EffectsModule.forFeature([UserListEffect]),
     ],
     declarations: [
-        UserListComponent
+        UserListComponent,
+        UserListHeaderComponent
     ]
 })
 export class MasterModule { }
