@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { select_isloggedin$, login_action, login_success_action } from './core/login/auth.store';
 import { GlobalService } from './services/global.service';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
+
+    
 
     var token = localStorage.getItem("token");
     if (token) {

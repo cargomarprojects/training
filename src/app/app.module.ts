@@ -19,6 +19,7 @@ import { AuthEffects } from './core/login/auth.effects';
 import { HttpInterceptorService } from './http.interceptors';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,15 +33,22 @@ import { HttpInterceptorService } from './http.interceptors';
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot({"auth": AuthReducer}),
+    StoreModule.forRoot({ "auth": AuthReducer}, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+      },
+    }),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument()
   ],
   providers: [
     {
-      provide : HTTP_INTERCEPTORS,
-      useClass : HttpInterceptorService,
-      multi : true
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

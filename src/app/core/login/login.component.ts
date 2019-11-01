@@ -4,6 +4,7 @@ import { AppState } from 'src/app/app.store';
 import { login_action, select_error$, logout_action } from './auth.store';
 import { Observable } from 'rxjs';
 
+
 @Component({
     selector: 'app-login',
     templateUrl: 'login.component.html'
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnDestroy(){}
 
     login() {
+      
         this.store.dispatch(login_action({ userid : this.userid, pwd : this.pwd  }))
     }
     cancel() {

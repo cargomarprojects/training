@@ -21,7 +21,6 @@ export function userReducer ( state : userState , action : Action  ){
     return reducer(state, action);
 }
 
-
 export const reducer = createReducer(
     initialState,
     on( LOAD_SUCCESS_ACTION, (state, action) =>{
