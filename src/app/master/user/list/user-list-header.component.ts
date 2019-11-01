@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
     selector: 'app-user-list-header',
@@ -6,7 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserListHeaderComponent implements OnInit {
+
+    @Input() searchString
+    @Output() searchClick = new EventEmitter<string>();
+
+
     constructor() { }
 
     ngOnInit() { }
+
+    search(){
+
+        if ( this.searchString === null )
+            this.searchString = '';
+        
+        this.searchClick.emit(this.searchString);
+
+    }
 }

@@ -18,7 +18,7 @@ export class UserListEffect {
         switchMap ( evt => this.service.List(evt.searchstring).pipe(
             map ( result =>{
                 if  (result ) 
-                    return LOAD_SUCCESS_ACTION({userlist : result})
+                    return LOAD_SUCCESS_ACTION({userlist : result, searchString : evt.searchstring })
                 else 
                     return LOAD_FAIL_ACTION({error :'No Recrods Found'})
             }),

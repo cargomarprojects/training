@@ -2,17 +2,19 @@ import { iuser } from '../../models/iuser';
 import { Action, createAction, props, createReducer,on, createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const LOAD_REQUEST_ACTION = createAction('[USER SCREEN] LOAD-REQUEST', props<{ searchstring : string}>());
-export const LOAD_SUCCESS_ACTION = createAction('[USER SCREEN] LOAD-SUCCESS', props<{ userlist : iuser[]}>());
+export const LOAD_SUCCESS_ACTION = createAction('[USER SCREEN] LOAD-SUCCESS', props<{ userlist : iuser[], searchString : string}>());
 export const LOAD_FAIL_ACTION = createAction('[USER SCREEN] LOAD-FAIL', props<{ error : string}>());
 
 export interface userState {
     loaded : boolean;
+    searchstring : string ;
     error : string ;
     userlist : iuser[];
 }
 
 export const initialState : userState = {
     loaded : false,
+    searchstring : '',
     error : null,
     userlist : []
 }
@@ -25,7 +27,7 @@ export const reducer = createReducer(
     initialState,
     on( LOAD_SUCCESS_ACTION, (state, action) =>{
         return {
-            ...state, loaded : true, error : null, userlist: action.userlist
+            ...state, loaded : true, error : null, userlist: action.userlist, searchstring : action.searchString
         }
     }),
     on( LOAD_FAIL_ACTION, (state, action) =>{
@@ -49,6 +51,11 @@ export const selectError = createSelector(
 export const selectUserList = createSelector(
     selectUserState,
     (state) => state.userlist
+)
+
+export const selectSearchString = createSelector(
+    selectUserState,
+    (state) => state.searchstring
 )
 
 
